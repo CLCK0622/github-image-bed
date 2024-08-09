@@ -1,0 +1,23 @@
+{
+    "name": "github-image-bed",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build-css": "sass --watch src/scss:public/css",
+        "copy-html": "copyfiles -f src/index.html public",
+        "build": "npm run copy-html & npm run build-css",
+        "start": "node index.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "axios": "^1.7.3",
+        "copyfiles": "^2.4.1",
+        "dotenv": "^16.4.5",
+        "express": "^4.19.2",
+        "multer": "1.4.5-lts.1",
+        "sass": "^1.77.8"
+    }
+}
