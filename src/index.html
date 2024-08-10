@@ -42,6 +42,7 @@
                     document.getElementById('result').innerHTML = `
                         <p>${result.message}</p>
                         <p><a href="${result.url}" target="_blank">View Image</a></p>
+                        <p><img src="${result.url}"></p>
                     `;
                 } else {
                     document.getElementById('result').innerHTML = `<p>Upload failed: ${result.message}</p>`;

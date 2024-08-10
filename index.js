@@ -37,7 +37,7 @@ app.post('/upload', upload.single('image'), async (req, res) => {
         );
 
         res.status(200).json({
-            message: `Image(${imageName}) uploaded to ${GITHUB_REPO} successfully!`,
+            message: `Image(${imageName}) uploaded to <a href="https://github.com/${GITHUB_REPO}">${GITHUB_REPO}</a> successfully!`,
             url: response.data.content.download_url
         });
     } catch (error) {
