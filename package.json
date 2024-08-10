@@ -2,12 +2,12 @@
     "name": "github-image-bed",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "api/index.js",
     "scripts": {
         "build-css": "sass --watch src/scss:public/css",
         "copy-html": "cpx \"src/index.html\" public --watch",
         "build": "cpx \"src/index.html\" public & sass src/scss:public/css",
-        "start": "node --watch index.js"
+        "start": "node --watch api/index.js"
     },
     "keywords": [],
     "author": "Kevin Zhong",

@@ -31,7 +31,7 @@
             formData.append('image', file);
 
             try {
-                const response = await fetch('/api/upload', {
+                const response = await fetch('/upload', {
                     method: 'POST',
                     body: formData
                 });
