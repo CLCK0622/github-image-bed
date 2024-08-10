@@ -4,21 +4,20 @@
     "description": "",
     "main": "api/index.js",
     "scripts": {
-        "build-css": "sass --watch src/scss:public/css",
-        "build": "cpx \"src/index.html\" public & sass src/scss:public/css",
-        "start": "node api/index.js",
-        "vercel-build": "pnpm run build"
+      "build-css": "sass --watch src/scss:public/css",
+      "vercel-build": "cpx src/index.html public && sass src/scss:public/css",
+      "start": "node api/index.js"
     },
     "keywords": [],
     "author": "Kevin Zhong",
     "license": "MIT",
     "dependencies": {
-        "axios": "^1.7.3",
-        "copyfiles": "^2.4.1",
-        "cpx": "^1.5.0",
-        "dotenv": "^16.4.5",
-        "express": "^4.19.2",
-        "multer": "1.4.5-lts.1",
-        "sass": "^1.77.8"
+      "axios": "^1.7.3",
+      "cpx": "^1.5.0",
+      "dotenv": "^16.4.5",
+      "express": "^4.19.2",
+      "multer": "1.4.5-lts.1",
+      "sass": "^1.77.8"
     }
-}
+  }
+  

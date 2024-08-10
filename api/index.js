@@ -1,20 +1,17 @@
 const express = require('express');
 const multer = require('multer');
 const axios = require('axios');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
 const upload = multer();
 
-// app.use(express.static('../public'));
-
 const { GITHUB_TOKEN, GITHUB_REPO } = process.env;
 const GITHUB_API_URL = `https://api.github.com/repos/${GITHUB_REPO}/contents/`;
 
-app.use(express.static('../public'));
-
 app.get('/', (req, res) => {
-  res.sendFile('../public/index.html');
+  res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
 app.post('/upload', upload.single('image'), async (req, res) => {
@@ -43,18 +40,13 @@ app.post('/upload', upload.single('image'), async (req, res) => {
         );
 
         res.status(200).json({
-            message: `Image(${imageName}) uploaded to <a href="https://github.com/${GITHUB_REPO}">${GITHUB_REPO}</a> successfully!`,
+            message: `Image uploaded successfully!`,
             url: response.data.content.download_url
         });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Image upload failed' });
     }
-});
-
-const PORT = 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running at http://localhost:${PORT}/`);
 });
 
 module.exports = app;
