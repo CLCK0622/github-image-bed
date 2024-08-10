@@ -7,7 +7,7 @@
         "build-css": "sass --watch src/scss:public/css",
         "build": "cpx \"src/index.html\" public & sass src/scss:public/css",
         "start": "node api/index.js",
-        "vercel-build": "pnpm run build & pnpm run start"
+        "vercel-build": "pnpm run build"
     },
     "keywords": [],
     "author": "Kevin Zhong",
