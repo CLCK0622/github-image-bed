@@ -40,7 +40,7 @@
 
                 if (response.ok) {
                     document.getElementById('result').innerHTML = `
-                        <p>Image uploaded successfully!</p>
+                        <p>${result.message}</p>
                         <p><a href="${result.url}" target="_blank">View Image</a></p>
                     `;
                 } else {

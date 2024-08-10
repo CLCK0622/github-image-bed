@@ -13,7 +13,13 @@ const GITHUB_API_URL = `https://api.github.com/repos/${GITHUB_REPO}/contents/`;
 
 app.post('/upload', upload.single('image'), async (req, res) => {
     try {
-        const imageName = req.file.originalname;
+        const timestamp = Date.now();
+        const originalName = req.file.originalname;
+        const dotIndex = originalName.lastIndexOf('.');
+        const baseName = originalName.substring(0, dotIndex);
+        const extension = originalName.substring(dotIndex);
+
+        const imageName = `${baseName}_${timestamp}${extension}`;
         const imageContent = req.file.buffer.toString('base64');
 
         const response = await axios.put(
@@ -31,7 +37,7 @@ app.post('/upload', upload.single('image'), async (req, res) => {
         );
 
         res.status(200).json({
-            message: 'Image uploaded successfully',
+            message: `Image(${imageName}) uploaded to ${GITHUB_REPO} successfully!`,
             url: response.data.content.download_url
         });
     } catch (error) {
