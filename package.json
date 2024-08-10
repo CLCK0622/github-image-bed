@@ -1,18 +1,6 @@
 {
     "name": "github-image-bed",
-    "version": 2,
-    "builds": [
-        {
-            "src": "/api/index.js",
-            "use": "@vercel/node"
-        }
-    ],
-    "routes": [
-        {
-            "src": "/api/(.*)",
-            "dest": "/api/index.js"
-        }
-    ],
+    "version": "1.0.0",
     "description": "",
     "main": "index.js",
     "scripts": {
