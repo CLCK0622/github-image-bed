@@ -6,7 +6,7 @@
     "scripts": {
         "build-css": "sass --watch src/scss:public/css",
         "copy-html": "cpx \"src/index.html\" public --watch",
-        "build": "npm run copy-html & npm run build-css",
+        "build": "cpx \"src/index.html\" public & sass src/scss:public/css",
         "start": "node --watch index.js"
     },
     "keywords": [],
