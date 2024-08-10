@@ -1,23 +1,25 @@
 {
-    "name": "github-image-bed",
-    "version": "1.0.0",
-    "description": "",
-    "main": "api/index.js",
-    "scripts": {
-      "build-css": "sass --watch src/scss:public/css",
-      "vercel-build": "cpx src/index.html public && sass src/scss:public/css",
-      "start": "node api/index.js"
-    },
-    "keywords": [],
-    "author": "Kevin Zhong",
-    "license": "MIT",
-    "dependencies": {
-      "axios": "^1.7.3",
-      "cpx": "^1.5.0",
-      "dotenv": "^16.4.5",
-      "express": "^4.19.2",
-      "multer": "1.4.5-lts.1",
-      "sass": "^1.77.8"
-    }
+  "name": "github-image-bed",
+  "version": "1.0.0",
+  "description": "",
+  "main": "api/index.js",
+  "scripts": {
+    "build-css": "sass --watch src/scss:public/css",
+    "vercel-build": "cpx src/index.html public && sass src/scss:public/css",
+    "start": "node api/index.js"
+  },
+  "keywords": [],
+  "author": "Kevin Zhong",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.7.3",
+    "cpx": "^1.5.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "multer": "1.4.5-lts.1",
+    "passport": "^0.7.0",
+    "passport-github2": "^0.1.12",
+    "sass": "^1.77.8"
   }
-  
+}
