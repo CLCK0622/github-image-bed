@@ -10,8 +10,8 @@
         "start": "node --watch index.js"
     },
     "keywords": [],
-    "author": "",
-    "license": "ISC",
+    "author": "Kevin Zhong",
+    "license": "MIT",
     "dependencies": {
         "axios": "^1.7.3",
         "copyfiles": "^2.4.1",
