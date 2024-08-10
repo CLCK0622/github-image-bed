@@ -6,10 +6,16 @@ require('dotenv').config();
 const app = express();
 const upload = multer();
 
-app.use(express.static('/public'));
+// app.use(express.static('../public'));
 
 const { GITHUB_TOKEN, GITHUB_REPO } = process.env;
 const GITHUB_API_URL = `https://api.github.com/repos/${GITHUB_REPO}/contents/`;
+
+app.use(express.static(path.join(__dirname, '../public')));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/index.html'));
+});
 
 app.post('/upload', upload.single('image'), async (req, res) => {
     try {
