@@ -5,7 +5,7 @@
   "main": "api/index.js",
   "scripts": {
     "build-css": "sass --watch src/scss:public/css",
-    "vercel-build": "cpx src/index.html public && sass src/scss:public/css",
+    "vercel-build": "cpx src/index.html public && cpx src/uploadpage.html public && sass src/scss:public/css",
     "start": "node api/index.js"
   },
   "keywords": [],

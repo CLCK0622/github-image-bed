@@ -10,17 +10,17 @@ require('dotenv').config();
 const app = express();
 const upload = multer();
 
-const { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, GITHUB_REPO } = process.env;
-const GITHUB_API_URL = `https://api.github.com/repos/${GITHUB_REPO}/contents/`;
+const { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } = process.env;
 
 app.use(session({ secret: 'your_secret_key', resave: false, saveUninitialized: true }));
+app.use(express.json());
 app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use(new GitHubStrategy({
     clientID: GITHUB_CLIENT_ID,
     clientSecret: GITHUB_CLIENT_SECRET,
-    callbackURL: "http://localhost:3000/callback"
+    callbackURL: "https://image.clckblog.space/callback"
 },
     function (accessToken, refreshToken, profile, done) {
         profile.accessToken = accessToken;
@@ -28,22 +28,21 @@ passport.use(new GitHubStrategy({
     }
 ));
 
-passport.serializeUser(function (user, done) {
+passport.serializeUser((user, done) => {
     done(null, user);
 });
 
-passport.deserializeUser(function (user, done) {
-    done(null, user);
+passport.deserializeUser((obj, done) => {
+    done(null, obj);
 });
 
-app.get('/auth/github',
-    passport.authenticate('github', { scope: ['user', 'repo'] })
-);
+// GitHub OAuth routes
+app.get('/auth/github', passport.authenticate('github', { scope: ['repo'] }));
 
 app.get('/callback',
     passport.authenticate('github', { failureRedirect: '/' }),
     function (req, res) {
-        res.redirect('/');
+        res.redirect('/uploadpage.html');
     }
 );
 
@@ -53,14 +52,25 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
-app.get('/css/styles.css', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/css/styles.css'));
+app.get('/uploadpage', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/uploadpage.html'));
+});
+
+app.get('/css/style.css', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/css/style.css'));
 });
 
 app.post('/upload', upload.single('image'), async (req, res) => {
     if (!req.isAuthenticated()) {
         return res.status(401).json({ message: 'Unauthorized' });
     }
+
+    const repo = req.body.repo;
+    if (!repo) {
+        return res.status(400).json({ message: 'Repository not specified' });
+    }
+
+    const GITHUB_API_URL = `https://api.github.com/repos/${repo}/contents/`;
 
     try {
         const timestamp = Date.now();
@@ -80,14 +90,14 @@ app.post('/upload', upload.single('image'), async (req, res) => {
             },
             {
                 headers: {
-                    Authorization: `Bearer ${req.user.accessToken}`,
+                    Authorization: `token ${req.user.accessToken}`,
                     Accept: 'application/vnd.github.v3+json'
                 }
             }
         );
 
         res.status(200).json({
-            message: `Image(${imageName}) uploaded to <a href="https://github.com/${GITHUB_REPO}">${GITHUB_REPO}</a> successfully!`,
+            message: `Image uploaded successfully!`,
             url: response.data.content.download_url
         });
     } catch (error) {

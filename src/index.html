@@ -7,54 +7,7 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <h1>Upload Image to GitHub</h1>
-    <form id="uploadForm">
-        <label for="image">Choose an image:</label>
-        <input type="file" id="image" name="image" accept="image/*" required>
-        <button type="submit">Upload</button>
-        <button><a href="/auth/github">Auth GH</a></button>
-        <button><a href="/">Logout</a></button>
-        <button><a href="/">Check Status</a></button>
-    </form>
-    <div id="result"></div>
-
-    <script>
-        document.getElementById('uploadForm').addEventListener('submit', async function(event) {
-            event.preventDefault();
-            
-            const formData = new FormData();
-            const fileInput = document.getElementById('image');
-            const file = fileInput.files[0];
-            
-            if (!file) {
-                alert("Please choose a file first.");
-                return;
-            }
-
-            formData.append('image', file);
-
-            try {
-                const response = await fetch('/upload', {
-                    method: 'POST',
-                    body: formData
-                });
-
-                const result = await response.json();
-
-                if (response.ok) {
-                    document.getElementById('result').innerHTML = `
-                        <p>${result.message}</p>
-                        <p><a href="${result.url}" target="_blank">View Image</a></p>
-                        <p><img src="${result.url}"></p>
-                    `;
-                } else {
-                    document.getElementById('result').innerHTML = `<p>Upload failed: ${result.message}</p>`;
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                document.getElementById('result').innerHTML = `<p>Upload failed due to a network error.</p>`;
-            }
-        });
-    </script>
+    <h1>GitHub Image Bed</h1>
+    <p><a href="/auth/github">Login with GitHub</a></p> <!-- OAuth Login Button -->
 </body>
 </html>
