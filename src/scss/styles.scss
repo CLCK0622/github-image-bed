@@ -1,22 +1,18 @@
 // scss/styles.scss
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-  
-    h1 {
-      color: #333;
-    }
-  
-    button {
-      background-color: #007bff;
-      border: none;
-      color: white;
-      padding: 10px 20px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      margin: 4px 2px;
-      cursor: pointer;
-    }
-  }
+
+//import
+@import "@primer/css/buttons/index.scss";
+
+// define variables
+// colors
+$btn-color: #1a7f37;
+$success: $btn-color;
+$link: #0969da;
+$accent: $link;
+$fgcolor: #1f2328;
+$fgmuted: #59636e;
+$danger: #d1242f;
+$white: #ffffff;
+
+//borders
+$border-color: #d1d9e0;

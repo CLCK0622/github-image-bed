@@ -5,13 +5,14 @@
   "main": "api/index.js",
   "scripts": {
     "build-css": "sass --watch src/scss:public/css",
-    "vercel-build": "cpx src/index.html public && cpx src/uploadpage.html public && sass src/scss:public/css",
+    "vercel-build": "cpx src/index.html public && cpx src/uploadpage.html public && sass src/scss:public/css --load-path node_modules",
     "start": "node api/index.js"
   },
   "keywords": [],
   "author": "Kevin Zhong",
   "license": "MIT",
   "dependencies": {
+    "@primer/css": "^21.3.6",
     "axios": "^1.7.3",
     "cpx": "^1.5.0",
     "dotenv": "^16.4.5",
